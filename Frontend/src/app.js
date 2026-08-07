@@ -68,72 +68,24 @@ class SocialEngSimulator {
         this.user = data.session.user;
         //console.log('User authenticated:', this.user.email);
         
-        // Set user role based on email
-        this.isAdmin = this.user.email === 'admin@gmail.com';
+        // All users have full access (portfolio mode)
+        this.isAdmin = true;
         
-        // Update navigation based on user role
+        // Update navigation
         this.updateNavigation();
         
         return true;
     }
     
     updateNavigation() {
-        const adminOnlyButtons = document.querySelectorAll('.admin-only');
-        const allNavButtons = document.querySelectorAll('.nav-btn');
-        
-        // Define which tabs are accessible for regular users
-        const regularUserTabs = ['dashboard', 'training', 'logout'];
-        
-        if (this.isAdmin) {
-            // Admin sees all tabs - show all admin-only buttons
-            adminOnlyButtons.forEach(btn => {
-                btn.style.display = 'block';
-            });
-        } else {
-            // Regular users only see specific tabs - hide admin-only buttons
-            adminOnlyButtons.forEach(btn => {
-                btn.style.display = 'none';
-            });
-            
-            // Also hide any other navigation buttons that aren't in regularUserTabs
-            allNavButtons.forEach(btn => {
-                const tabName = btn.getAttribute('data-tab');
-                if (tabName && !regularUserTabs.includes(tabName)) {
-                    btn.style.display = 'none';
-                }
-            });
-        }
-        
-        // If current tab is not accessible to user, redirect to dashboard
-        if (!this.isAdmin && !regularUserTabs.includes(this.currentTab)) {
-            this.switchTab('dashboard');
-        }
+        // All tabs visible to all logged-in users (portfolio mode)
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.style.display = 'block';
+        });
     }
     
     protectRoutes() {
-        // Hide all admin-only tab content for regular users
-        const regularUserTabs = ['dashboard', 'training', 'logout'];
-        const adminOnlyTabs = ['scenarios', 'builder', 'analytics'];
-        
-        if (!this.isAdmin) {
-            // Hide admin-only tab content
-            adminOnlyTabs.forEach(tabId => {
-                const tabElement = document.getElementById(tabId);
-                if (tabElement) {
-                    tabElement.style.display = 'none';
-                    tabElement.classList.remove('active');
-                }
-            });
-            
-            // Ensure only accessible tabs are visible
-            regularUserTabs.forEach(tabId => {
-                const tabElement = document.getElementById(tabId);
-                if (tabElement && tabId === this.currentTab) {
-                    tabElement.style.display = 'block';
-                    tabElement.classList.add('active');
-                }
-            });
-        }
+        // No route protection needed — all tabs open to all users (portfolio mode)
     }
     
     setupEventListeners() {
@@ -263,14 +215,6 @@ class SocialEngSimulator {
 
     switchTab(tabName) {
         console.log(`Switching to tab: ${tabName}`);
-        
-        // Check if user has access to this tab
-        const regularUserTabs = ['dashboard', 'training', 'logout'];
-        if (!this.isAdmin && !regularUserTabs.includes(tabName)) {
-            console.log(`User does not have access to tab: ${tabName}`);
-            // Force redirect to dashboard for unauthorized access
-            tabName = 'dashboard';
-        }
         
         // Update navigation buttons
         document.querySelectorAll('.nav-btn').forEach(btn => {
@@ -1055,13 +999,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (e.ctrlKey && e.key >= '1' && e.key <= '6') {
             e.preventDefault();
             const tabIndex = parseInt(e.key) - 1;
-            const tabs = ['dashboard', 'training', 'logout']; // Only accessible tabs for regular users
+            const tabs = ['dashboard', 'scenarios', 'builder', 'training', 'analytics', 'logout'];
             if (tabs[tabIndex]) {
-                // Check if user has access to this tab
-                const regularUserTabs = ['dashboard', 'training', 'logout'];
-                if (window.simulator.isAdmin || regularUserTabs.includes(tabs[tabIndex])) {
-                    window.simulator.switchTab(tabs[tabIndex]);
-                }
+                window.simulator.switchTab(tabs[tabIndex]);
             }
         }
     });
