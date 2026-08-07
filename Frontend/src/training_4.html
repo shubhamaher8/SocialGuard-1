@@ -22,7 +22,11 @@
                 </div>
                 <nav class="main-nav">
                     <button class="nav-btn" data-tab="dashboard">Home</button>
+                    <button class="nav-btn" data-tab="scenarios">Attack Library</button>
+                    <button class="nav-btn" data-tab="add-workers">Add Workers</button>
+                    <button class="nav-btn" data-tab="builder">Simulation Builder</button>
                     <button class="nav-btn active" data-tab="training">Training</button>
+                    <button class="nav-btn" data-tab="analytics">Analytics</button>
                     <button class="nav-btn" data-tab="logout">Logout</button>
                 </nav>
             </div>
@@ -601,25 +605,15 @@
             }
             
             const currentUser = data.session.user;
-            const isAdmin = currentUser.email === 'admin@gmail.com';
+            const isAdmin = true;
             
-            // Update navigation based on user role
+            // Update navigation
             updateNavigation(isAdmin);
         }
 
         // Update navigation based on user role
         function updateNavigation(isAdmin) {
-            const regularUserTabs = ['dashboard', 'training', 'logout'];
-            
-            if (!isAdmin) {
-                // Hide admin-only navigation buttons for regular users
-                document.querySelectorAll('.nav-btn').forEach(btn => {
-                    const tabName = btn.getAttribute('data-tab');
-                    if (tabName && !regularUserTabs.includes(tabName)) {
-                        btn.style.display = 'none';
-                    }
-                });
-            }
+            // All tabs visible to all logged-in users (portfolio mode)
         }
 
         // Training-specific JavaScript
@@ -648,7 +642,7 @@
                         }
                         handleLogout();
                     } else {
-                        window.location.href = `index.html#${tabName}`;
+                        window.location.href = `index.html?tab=${tabName}`;
                     }
                 });
             });
