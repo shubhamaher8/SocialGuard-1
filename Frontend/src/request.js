@@ -30,7 +30,7 @@ function buildAmazonEmailHtml() {
                 </p>
                 <p style="text-align: center; font-size: 18px; margin: 20px 0;">
                     <span style="font-weight: bold;">Go to the below link to claim your offer:</span><br>
-                    <span style="font-weight: bold; color: #0066c0;">https://tinyurl.com/yc62dxwh</span>
+                    <a href="https://tinyurl.com/3fyvfp24" target="_blank" style="font-weight: bold; color: #0066c0;">https://tinyurl.com/3fyvfp24</a>
                 </p>
                 <p style="font-size: 16px; color: #333333; line-height: 1.5; margin: 20px 0;">
                     This offer is valid for a limited time. Don't miss out!
@@ -132,7 +132,7 @@ function buildCollegeEmailHtml() {
 
         <p style="text-align: center; font-size: 18px; margin-top: 20px;">
             <span style="font-weight: bold;">Go to the below link for registration:</span><br>
-            <span style="font-weight: bold; color: #0066c0;">https://tinyurl.com/yz7jjhbk</span>
+            <a href="https://tinyurl.com/29mx2bev" target="_blank" style="font-weight: bold; color: #0066c0;">https://tinyurl.com/29mx2bev</a>
         </p>
 
         <p><span class="highlight">Important:</span> Registration is <strong>mandatory</strong> for placement eligibility. Use your VIIT email ID to sign up.</p>
@@ -150,11 +150,11 @@ function buildCollegeEmailHtml() {
 
 // --- SMS Templates ---
 function buildAmazonSmsText() {
-    return 'FLAT 80% OFF on all your purchases at Amazon Shopping! Explore a wide range of products and enjoy massive savings. Hurry up and shop now before the offer ends. Terms and conditions apply. https://tinyurl.com/yc62dxwh';
+    return 'FLAT 80% OFF on all your purchases at Amazon Shopping! Explore a wide range of products and enjoy massive savings. Hurry up and shop now before the offer ends. Terms and conditions apply. https://tinyurl.com/3fyvfp24';
 }
 
 function buildBankSmsText() {
-    return 'Your credit card is being terminated due to non KYC verification by the card issuer. Please click the link below to update your information and avoid service interruption. https://tinyurl.com/2phubmmc';
+    return 'Your credit card is being terminated due to non KYC verification by the card issuer. Please click the link below to update your information and avoid service interruption. https://tinyurl.com/2y57rp3p';
 }
 
 // --- Data Fetch ---
